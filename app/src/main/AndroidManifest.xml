@@ -8,11 +8,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/perro"
+        android:icon="@drawable/zenvest"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/perro"
+        android:roundIcon="@drawable/zenvest"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZenvestPrueba2">
+        <activity
+            android:name=".Register"
+            android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false" />

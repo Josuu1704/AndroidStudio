@@ -3,5 +3,8 @@
     <color name="marroncillo">#FFC326</color>
     <color name="marronclaro">#FFE8AC</color>
     <color name="cian">#1EE5FE</color>
+    <color name="azulmarino"> #000D19 </color>
+    <color name="azulclaro"> #0CC8F2 </color>
+    <color name="blanco"> #FFFF </color>
 
 </resources>

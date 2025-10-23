@@ -16,7 +16,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Login extends AppCompatActivity {
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.matches();
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,13 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        loginTVRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentRegister = new Intent(Login.this, Register.class);
+                startActivity(intentRegister);
+            }
+        });
         /**
          * Tarea: HAcer una actividad para registrarse y poder llegar a ella desde el loginTVRegsiter
          */

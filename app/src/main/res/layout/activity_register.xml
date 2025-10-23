@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Register">
 
     <View
         android:id="@+id/splahDegradao"
@@ -16,11 +16,11 @@
         />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/LoginGLh1"
+        android:id="@+id/RegisterGLh1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"
+        app:layout_constraintGuide_percent="0.15"
         />
 
     <ImageView
@@ -31,11 +31,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginGLh1"
+        app:layout_constraintTop_toBottomOf="@id/RegisterGLh1"
         />
 
     <TextView
-        android:id="@+id/LoginAppName"
+        android:id="@+id/RegisterAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/LoginGLv1"
+        android:id="@+id/RegisterGLv1"
         app:layout_constraintGuide_percent="0.2"
         />
 
@@ -59,18 +59,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/LoginGLv2"
+        android:id="@+id/RegisterGLv2"
         app:layout_constraintGuide_percent="0.8"
         />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LoginTILuserName"
+        android:id="@+id/RegisterTILuserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/LoginAppName"
-        app:layout_constraintStart_toStartOf="@id/LoginGLv1"
-        app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
+        app:layout_constraintTop_toBottomOf="@id/RegisterAppName"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
         android:layout_marginTop="10dp"
         app:startIconDrawable="@drawable/ic_key"
         >
@@ -87,12 +87,34 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LoginTILpassword"
+        android:id="@+id/RegisterTILemail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/LoginTILuserName"
-        app:layout_constraintStart_toStartOf="@id/LoginGLv1"
-        app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
+        app:layout_constraintTop_toBottomOf="@id/RegisterTILuserName"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
+        android:layout_marginTop="10dp"
+        app:startIconDrawable="@drawable/ic_email"
+        >
+        <EditText
+            android:id="@+id/TextoEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            >
+
+        </EditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/RegisterTILpassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/RegisterTILemail"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
         android:layout_marginTop="10dp"
         app:startIconDrawable="@drawable/ic_person"
         app:passwordToggleEnabled="true"
@@ -108,39 +130,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/RegisterTIL2password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/RegisterTILpassword"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
+        android:layout_marginTop="10dp"
+        app:startIconDrawable="@drawable/ic_person"
+        app:passwordToggleEnabled="true"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar contraseña"
+            android:inputType="textPassword"
+            >
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
-        android:id="@+id/LoginButton"
+        android:id="@+id/RegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entrar"
+        android:text="Registrarse"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginTILpassword"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterTIL2password"
         />
-
-    <TextView
-        android:id="@+id/LoginTVRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="¿Aun no te has registrado todavia?"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginButton"
-        android:textColor="@color/blanco"/>
-
-    <TextView
-        android:id="@+id/LoginTVOlvidar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="¿Te has olvidado la contraseña?"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginTVRegister"
-        android:textColor="@color/blanco"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
