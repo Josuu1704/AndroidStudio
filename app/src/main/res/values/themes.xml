@@ -3,6 +3,10 @@
     <style name="Base.Theme.ZenvestPrueba2" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/azulclaro</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorSurface">@color/azulclaro</item>
+        <item name="colorOnSurface">@color/blanco</item>
     </style>
 
     <style name="Theme.ZenvestPrueba2" parent="Base.Theme.ZenvestPrueba2" />
