@@ -11,7 +11,7 @@
         android:id="@+id/splahDegradao"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/azulmarino"
+        android:background="@color/material_dynamic_neutral0"
         android:alpha="0.9"
         />
 
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/loginLogo"
         android:textSize="35sp"
         android:fontFamily="@font/akira"
-        android:textColor="@color/azulclaro"
+        android:textColor="@color/md_theme_inversePrimary_mediumContrast"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:hint="nombre de usuario"
             android:inputType="textPersonName"
+            android:textColor="@color/md_theme_onSecondary_mediumContrast"
             >
 
         </EditText>
@@ -102,6 +103,7 @@
             android:layout_height="wrap_content"
             android:hint="Contraseña"
             android:inputType="textPassword"
+            android:textColor="@color/md_theme_onSecondary_mediumContrast"
             >
 
         </EditText>
@@ -129,7 +131,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LoginButton"
-        android:textColor="@color/blanco"/>
+        android:textColor="@color/md_theme_onPrimary_mediumContrast"/>
 
     <TextView
         android:id="@+id/LoginTVOlvidar"
@@ -141,6 +143,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LoginTVRegister"
-        android:textColor="@color/blanco"/>
+        android:textColor="@color/md_theme_onPrimary_mediumContrast"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
