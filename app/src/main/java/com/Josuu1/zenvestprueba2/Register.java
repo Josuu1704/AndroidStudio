@@ -1,6 +1,10 @@
 package com.Josuu1.zenvestprueba2;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,19 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
-
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    public static boolean validate(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.matches();
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,47 +35,74 @@ public class Register extends AppCompatActivity {
             return insets;
         });
 
-        TextInputLayout usernameTIL = findViewById(R.id.RegisterTILuserName);
-        TextInputLayout passwordTIL = findViewById(R.id.RegisterTILpassword);
-        TextInputLayout password2TIL = findViewById(R.id.RegisterTIL2password);
-        TextInputLayout emailTIL = findViewById(R.id.RegisterTILemail);
+        TextInputLayout registerTILuserName = findViewById(R.id.RegisterTILuserName);
+        TextInputLayout registerTILemail = findViewById(R.id.RegisterTILemail);
+        TextInputLayout registerTILpassword = findViewById(R.id.RegisterTILpassword);
+        TextInputLayout registerTILpasswordDoubleChek = findViewById(R.id.RegisterTIL2password);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        FormUtils formUtils = new FormUtils();
+
         Button registerButton = findViewById(R.id.RegisterButton);
-
-
         registerButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                String username = String.valueOf(usernameTIL.getEditText().getText());
-                String password = String.valueOf(passwordTIL.getEditText().getText());
-                String password2 = String.valueOf(password2TIL.getEditText().getText());
-                String email = String.valueOf(emailTIL.getEditText().getText());
+                boolean canContinue = true;
+                if (formUtils.isTILEmpty(registerTILuserName)){
+                    //Toast.makeText(Register.this, "Nombre vacío", Toast.LENGTH_SHORT).show();
+                    registerTILuserName.setErrorEnabled(true);
+                    registerTILuserName.setError("Nombre vacío");
+                    canContinue = false;
+                }
+                if (!isEmailCorrect(registerTILemail)) {
+                    //Toast.makeText(Register.this, "Email incorrecto", Toast.LENGTH_SHORT).show();
+                    registerTILemail.setErrorEnabled(true);
+                    registerTILemail.setError("Tu email está mal escrito");
+                    canContinue = false;
+                }
 
-                if(username.isEmpty()){
-                    Toast brindis = Toast.makeText(Register.this, "El usuario está vacio", Toast.LENGTH_SHORT);
-                    brindis.show();
-            }
-                if(password.isEmpty()){
-                    Toast brindis = Toast.makeText(Register.this, "La contraseña está vacia", Toast.LENGTH_SHORT);
-                    brindis.show();
-                } else {
-                    if(password2.isEmpty()){
-                        Toast brindis = Toast.makeText(Register.this, "La contraseña está vacia", Toast.LENGTH_SHORT);
-                        brindis.show();
+                if (!arePasswordsTheSame(registerTILpassword, registerTILpasswordDoubleChek))  {
+                    registerTILpasswordDoubleChek.setErrorEnabled(true);
+                    registerTILpasswordDoubleChek.setError("La contraseña no es válida");
+                    if (formUtils.isTILEmpty(registerTILpassword) && formUtils.isTILEmpty(registerTILpasswordDoubleChek)) {
+                        Toast.makeText(Register.this, "No has escrito nada en el campo constraseña", Toast.LENGTH_SHORT).show();
                     } else {
-                        if (!password.equals(password2)){
-                            Toast brindis =  Toast.makeText(Register.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT);
-                            brindis.show();
-                        }
+                        Toast.makeText(Register.this, "Las dos contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     }
+                    canContinue = false;
                 }
 
-                if(email.isEmpty()){
-                    Toast brindis = Toast.makeText(Register.this, "El email está vacia", Toast.LENGTH_SHORT);
-                    brindis.show();
+                if (canContinue) {
+                    editor.putString("userName",String.valueOf(registerTILuserName.getEditText().getText()));
+                    editor.putString("email",String.valueOf(registerTILemail.getEditText().getText()));
+                    editor.putString("password", formUtils.generateHashedPassword(formUtils.getTILText(registerTILpassword)));
+                    editor.apply();
+
+                    Intent intent = new Intent(Register.this, MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nombre", String.valueOf(registerTILuserName.getEditText().getText()));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
 
-        }
+            }
         });
-
     }
+    public boolean isEmailCorrect(TextInputLayout emailTIL) {
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern p = Pattern.compile(emailPattern);
+        String email = String.valueOf(emailTIL.getEditText().getText());
+        Matcher m = p.matcher(email);
+        return m.find();
+    }
+
+    public boolean arePasswordsTheSame(TextInputLayout textInputLayout, TextInputLayout textInputLayoutCheck) {
+        String firstPassword = String.valueOf(textInputLayout.getEditText().getText());
+        String secondPassword = String.valueOf(textInputLayoutCheck.getEditText().getText());
+        return firstPassword.equals(secondPassword) && !firstPassword.isEmpty();
+    }
+
 }

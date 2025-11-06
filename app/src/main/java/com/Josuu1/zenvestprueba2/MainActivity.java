@@ -1,5 +1,6 @@
 package com.Josuu1.zenvestprueba2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button mainButton = findViewById(R.id.mainButton);
         TextView mainTV = findViewById(R.id.mainTV);
+        TextView SaludoUser = findViewById(R.id.SaludoUser);
+
+        Bundle bundle = getIntent().getExtras();
+        String nombre = bundle.getString("nombre");
+        SaludoUser.setText("Bienvenido, " + nombre);
+
+
 
         contador = 0;
         mainTV.setText(String.valueOf(contador));
