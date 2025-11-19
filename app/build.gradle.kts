@@ -25,6 +25,10 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -34,6 +38,7 @@ android {
 
 dependencies {
     implementation("org.mindrot:jbcrypt:0.4")
+    implementation("jp.wasabeef:blurry:4.0.1")
     implementation("com.github.bumptech.glide:glide:5.0.5")
     implementation(libs.appcompat)
     implementation(libs.material)

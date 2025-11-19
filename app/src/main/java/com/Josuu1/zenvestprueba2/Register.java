@@ -1,6 +1,5 @@
 package com.Josuu1.zenvestprueba2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
-
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

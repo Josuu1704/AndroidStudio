@@ -1,5 +1,6 @@
 package com.Josuu1.zenvestprueba2;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +12,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager.widget.ViewPager;
+
+import com.Josuu1.zenvestprueba2.databinding.ActivityMainBinding;
+import com.Josuu1.zenvestprueba2.ui.frmanager.Paginador;
+
+import java.util.concurrent.CountedCompleter;
 
 public class MainActivity extends AppCompatActivity {
     Button mainButton;
     TextView mainTV;
     int contador;
+
+    private ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +38,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button mainButton = findViewById(R.id.mainButton);
-        TextView mainTV = findViewById(R.id.mainTV);
-        TextView SaludoUser = findViewById(R.id.SaludoUser);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Bundle bundle = getIntent().getExtras();
-        String nombre = bundle.getString("nombre");
-        SaludoUser.setText("Bienvenido, " + nombre);
+        Paginador paginador = new Paginador(this, getSupportFragmentManager());
+        ViewPager viewPager = binding.coralViewPager;
+        viewPager.setAdapter(paginador);
+
+        //Button mainButton = findViewById(R.id.mainButton);
+        //TextView mainTV = findViewById(R.id.mainTV);
+        //TextView SaludoUser = findViewById(R.id.SaludoUser);
+
+        //Bundle bundle = getIntent().getExtras();
+        //String nombre = bundle.getString("nombre");
+        //SaludoUser.setText("Bienvenido, " + nombre);
 
 
 
