@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = binding.coralViewPager;
         viewPager.setAdapter(paginador);
 
-        //Button mainButton = findViewById(R.id.mainButton);
-        //TextView mainTV = findViewById(R.id.mainTV);
-        //TextView SaludoUser = findViewById(R.id.SaludoUser);
+        Button mainButton = findViewById(R.id.mainButton);
+        TextView mainTV = findViewById(R.id.mainTV);
+        TextView SaludoUser = findViewById(R.id.SaludoUser);
 
-        //Bundle bundle = getIntent().getExtras();
-        //String nombre = bundle.getString("nombre");
-        //SaludoUser.setText("Bienvenido, " + nombre);
+        Bundle bundle = getIntent().getExtras();
+        String nombre = bundle.getString("nombre");
+        SaludoUser.setText("Bienvenido, " + nombre);
 
 
 
